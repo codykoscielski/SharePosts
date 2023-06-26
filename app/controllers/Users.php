@@ -26,4 +26,22 @@
                 $this->view('users/register', $data);
             }
         }
+
+        public function login() {
+            //Check for POST
+            if($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //Process the form
+            } else {
+                //Init data
+                $data = [
+                    'email' => '',
+                    'password' => '',
+                    'email_error' => '',
+                    'password_error' => '',
+                ];
+
+                //Load the view
+                $this->view('users/login', $data);
+            }
+        }
     }

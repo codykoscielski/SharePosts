@@ -1,7 +1,8 @@
 <?php
-    class Users extends  Controller {
+    #[AllowDynamicProperties] class Users extends  Controller {
         public function __construct(){
             //Load the model
+            $this->userModel = $this->model('User');
         }
 
         //Register the user
@@ -25,6 +26,11 @@
                 //Validate the email
                 if(empty($data['email'])) {
                     $data['email_error'] = 'Please enter an email';
+                } else {
+                    //Check email
+                    if($this->userModel->findUserByEmail($data['email'])) {
+                        $data['email_error'] = 'Email already used';
+                    }
                 }
                 //Validate the name
                 if(empty($data['name'])) {

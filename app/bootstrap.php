@@ -1,6 +1,8 @@
 <?php
     //load config
     require_once 'config/config.php';
+    //load helper functions
+    require_once 'helper/url_helper.php';
 
     //Autoload Core Libraries
     spl_autoload_register(function($className) {

@@ -20,4 +20,19 @@ class User {
             return false;
         }
     }
+    //Register the user
+    public function register($data) {
+        $this->db->query('INSERT INTO users (name, email, password) VALUES(:name, :email, :password)');
+        //Bind the values to the sql statement
+        $this->db->bind(':name', $data['name']);
+        $this->db->bind(':email', $data['email']);
+        $this->db->bind(':password', $data['password']);
+
+        //Execute the insert statement
+        if($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

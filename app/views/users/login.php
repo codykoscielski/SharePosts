@@ -23,7 +23,7 @@
                             <input type="submit" class="btn btn-success btn-block" value="login">
                         </div>
                         <div class="col">
-                            <a href="<?php echo URLROOT; ?>/users/register" class="btn btn-light btn-block">Need an account? Create one here</a>
+                            <a href="<?php echo URLROOT; ?>/users/login" class="btn btn-light btn-block">Need an account? Create one here</a>
                         </div>
                     </div>
                 </form>

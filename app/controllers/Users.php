@@ -106,9 +106,27 @@
                     $data['password_error'] = 'Please enter a password';
                 }
 
+                //Check for user/email
+                if($this->userModel->findUserByEmail($data['email'])) {
+                    //User found
+                } else {
+                    $data['email_error'] = 'Username or Password incorrect';
+                }
+
                 //Make sure all errors are empty, process the form
-                if(empty($data['name_error']) && empty($data['password_error'])) {
-                    die('SUCCESS');
+                if(empty($data['email_error']) && empty($data['password_error'])) {
+                    //Validated
+                    //Check and set log in user
+                    $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+                    if($loggedInUser) {
+                        //Create Session
+                        die('LOGGED IN SUCCESS');
+                    } else {
+                        $data['password_error'] = 'Email or password incorrect';
+                        //Load the view
+                        $this->view('users/login', $data);
+                    }
                 } else {
                     $this->view('users/login', $data);
                 }

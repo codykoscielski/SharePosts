@@ -12,7 +12,6 @@ class User {
         $this->db->bind(':email', $email);
 
         $row = $this->db->single();
-        var_dump($row);
         // Check row
         if($row){
             return true;
@@ -31,6 +30,20 @@ class User {
         //Execute the insert statement
         if($this->db->execute()) {
             return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function login($email, $password) {
+        $this->db->query('SELECT * FROM users WHERE email = :email');
+        $this->db->bind(':email', $email);
+
+        $row = $this->db->single();
+
+        $hashed_password = $row->password;
+        if(password_verify($password, $hashed_password)) {
+            return $row;
         } else {
             return false;
         }

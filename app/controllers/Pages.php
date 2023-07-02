@@ -6,6 +6,9 @@
         }
 
         public function index(): void {
+            if(isLoggedIn()) {
+                redirect('posts');
+            }
             $data = [
                 'title' => 'SharePosts',
                 'desc' => 'Simple Social Network Built on a PHP MVC Framework'
